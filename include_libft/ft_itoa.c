@@ -3,70 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yughoshi <yughoshi@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: rozeki <rozeki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/13 19:50:47 by yughoshi          #+#    #+#             */
-/*   Updated: 2022/10/20 15:38:27 by yughoshi         ###   ########.fr       */
+/*   Created: 2022/12/11 12:39:07 by rozeki            #+#    #+#             */
+/*   Updated: 2022/12/11 13:00:00 by rozeki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	get_digit(long long num)
+static int	ft_len(int nb)
 {
-	size_t	digit;
+	int	len;
 
-	digit = 1;
-	if (num < 0)
+	len = 0;
+	if (nb <= 0)
+		len ++;
+	while (nb)
 	{
-		num *= -1;
-		digit++;
+		len++;
+		nb = nb / 10;
 	}
-	while (num >= 10)
-	{
-		num = num / 10;
-		digit++;
-	}
-	return (digit);
-}
-
-static long	minus_to_plus(long long num, char *res, size_t *sign)
-{
-	res[0] = '-';
-	num = num * -1;
-	*sign = 1;
-	return (num);
-}
-
-static char	*str_generation(long long num, char *res, size_t sign, size_t len)
-{
-	while (len > 0)
-	{
-		res[len] = num % 10 + '0';
-		num = num / 10;
-		len--;
-	}
-	if (sign == 0)
-		res[0] = num % 10 + '0';
-	return (res);
+	return (len);
 }
 
 char	*ft_itoa(int n)
 {
-	char		*res;
-	long long	long_n;
-	size_t		sign;
-	size_t		len_n;
+	char	*h;
+	long	num;
+	int		len;
 
-	long_n = n;
-	sign = 0;
-	len_n = get_digit(long_n);
-	res = (char *)malloc(sizeof(char) * (len_n + 1));
-	if (res == NULL)
+	len = ft_len(n);
+	num = n;
+	h = malloc(sizeof(char) * len + 1);
+	if (h == NULL)
 		return (NULL);
-	if (n < 0)
-		long_n = minus_to_plus(n, res, &sign);
-	res[len_n] = '\0';
-	res = str_generation(long_n, res, sign, len_n - 1);
-	return (res);
+	if (num < 0)
+	{
+		h[0] = '-';
+		num = -num;
+	}
+	h[len] = '\0';
+	len --;
+	if (num == 0)
+		h[len] = '0';
+	while (num)
+	{
+		h[len] = num % 10 + '0';
+		len --;
+		num = num / 10;
+	}
+	return (h);
 }

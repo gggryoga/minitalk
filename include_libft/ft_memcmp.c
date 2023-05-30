@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yughoshi <yughoshi@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: rozeki <rozeki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/09 13:35:04 by yughoshi          #+#    #+#             */
-/*   Updated: 2022/10/20 15:38:47 by yughoshi         ###   ########.fr       */
+/*   Created: 2022/10/23 14:46:55 by rozeki            #+#    #+#             */
+/*   Updated: 2022/12/11 18:39:18 by rozeki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	const unsigned char	*s1_uc;
-	const unsigned char	*s2_uc;
-	size_t				i;
+	unsigned char	*h1;
+	unsigned char	*h2;
+	size_t			c;
 
-	s1_uc = (const unsigned char *)s1;
-	s2_uc = (const unsigned char *)s2;
-	i = 0;
-	while (n > i)
+	h1 = (unsigned char *)s1;
+	h2 = (unsigned char *)s2;
+	c = 0;
+	while (c < n)
 	{
-		if (s1_uc[i] != s2_uc[i])
-		{
-			return ((int)(s1_uc[i] - s2_uc[i]));
-		}
-		i++;
+		if (h1[c] > h2[c])
+			return (h1[c] - h2[c]);
+		else if (h2[c] > h1[c])
+			return (h1[c] - h2[c]);
+		c++;
 	}
 	return (0);
 }

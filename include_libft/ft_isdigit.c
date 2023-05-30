@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yughoshi <yughoshi@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: rozeki <rozeki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/06 09:13:01 by yughoshi          #+#    #+#             */
-/*   Updated: 2022/10/20 15:38:21 by yughoshi         ###   ########.fr       */
+/*   Created: 2022/10/10 13:26:07 by rozeki            #+#    #+#             */
+/*   Updated: 2022/10/16 17:01:18 by rozeki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,16 @@
 
 int	ft_isdigit(int c)
 {
-	if (c >= '0' && c <= '9')
-	{
+	if (48 <= c && c <= 57)
 		return (1);
-	}
 	else
-	{
 		return (0);
-	}
 }
+
+// #include <stdio.h>
+// int main(){
+// 	int a;
+
+// 	a = ft_isdigit(48);
+// 	printf("%d",a);
+// }

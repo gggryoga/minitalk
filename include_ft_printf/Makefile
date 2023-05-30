@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yughoshi <yughoshi@student.42tokyo.jp>     +#+  +:+       +#+         #
+#    By: rozeki   <rozeki  @student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/10/20 15:59:44 by yughoshi          #+#    #+#              #
-#    Updated: 2023/04/25 22:14:34 by yughoshi         ###   ########.fr        #
+#    Created: 2022/10/20 15:59:44 by rozeki            #+#    #+#              #
+#    Updated: 2023/04/25 22:14:34 by rozeki           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

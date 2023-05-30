@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yughoshi <yughoshi@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: rozeki <rozeki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/17 17:27:36 by yughoshi          #+#    #+#             */
-/*   Updated: 2022/10/17 17:59:35 by yughoshi         ###   ########.fr       */
+/*   Created: 2022/12/04 16:43:01 by rozeki            #+#    #+#             */
+/*   Updated: 2022/12/08 15:11:11 by rozeki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,15 @@
 
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	if (lst == NULL || new == NULL)
+	t_list	*end;
+
+	if (new == NULL || lst == NULL)
 		return ;
-	else if (*lst == NULL)
+	if (*lst == NULL)
+	{
 		*lst = new;
-	else
-		ft_lstlast(*lst)->next = new;
+		return ;
+	}
+	end = ft_lstlast(*lst);
+	end->next = new;
 }

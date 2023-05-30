@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yughoshi <yughoshi@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: rozeki <rozeki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/06 20:51:49 by yughoshi          #+#    #+#             */
-/*   Updated: 2022/10/06 20:53:34 by yughoshi         ###   ########.fr       */
+/*   Created: 2022/10/10 18:45:47 by rozeki            #+#    #+#             */
+/*   Updated: 2022/10/10 18:47:58 by rozeki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 
 int	ft_tolower(int c)
 {
-	if (c >= 65 && c <= 90)
-	{
-		return (c + 32);
-	}
+	if (65 <= c && c <= 90)
+		c = c + 32;
 	return (c);
 }

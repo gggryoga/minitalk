@@ -3,86 +3,70 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yughoshi <yughoshi@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: rozeki <rozeki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/12 18:30:11 by yughoshi          #+#    #+#             */
-/*   Updated: 2022/10/20 15:39:21 by yughoshi         ###   ########.fr       */
+/*   Created: 2022/11/13 19:01:24 by rozeki            #+#    #+#             */
+/*   Updated: 2022/12/14 13:08:41 by rozeki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	array_size_count(char const *str, char c)
+static void	free_lst(char **ans)
 {
-	size_t	array_size;
-	size_t	i;
+	while (*ans)
+	{
+		free (*ans);
+		ans++;
+	}
+	free (ans);
+}
+
+static void	fill_ans(char const *s, char c, char **ans)
+{
+	int	i;
+	int	len;
 
 	i = 0;
-	array_size = 0;
-	while (str[i] != '\0')
+	len = 0;
+	while (s[i])
 	{
-		while (str[i] == c && str[i] != '\0')
-			i++;
-		if (str[i] != c && str[i] != '\0')
+		if (s[i] != c)
+			len ++;
+		if (s[i] != c && (s[i + 1] == c || !s[i + 1]))
 		{
-			while (str[i] != c && str[i] != '\0')
-				i++;
-			array_size++;
+			*ans = ft_substr(s, i - len + 1, len);
+			if (*ans++ == NULL)
+			{
+				free_lst(ans);
+				return ;
+			}
+			len = 0;
 		}
+		i ++;
 	}
-	return (array_size);
-}
-
-static char	*str_change_start_point(char *s, char c)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i] != '\0' && s[i] == c)
-		i++;
-	s = s + i;
-	return (s);
-}
-
-static char	**ft_free(char **res)
-{
-	size_t	i;
-
-	i = 0;
-	while (res[i] != NULL)
-	{
-		free(res[i]);
-		i++;
-	}
-	free(res);
-	return (NULL);
+	*ans = NULL;
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char	**res;
+	char	**ans;
 	size_t	i;
-	size_t	j;
-	size_t	array_size;
+	int		len;
 
+	i = 0;
+	len = 0;
 	if (s == NULL)
 		return (NULL);
-	array_size = array_size_count(s, c);
-	res = (char **)malloc(sizeof(char *) * (array_size + 1));
-	if (res == NULL)
-		return (NULL);
-	j = 0;
-	while (j < array_size)
+	while (s[i])
 	{
-		i = 0;
-		s = str_change_start_point((char *)s, c);
-		while (((char *)s)[i] != '\0' && ((char *)s)[i] != c)
-			i++;
-		res[j] = ft_substr(s, 0, i);
-		if (res[j++] == NULL)
-			return (ft_free(res));
-		s = s + i;
+		if (s[i] != c && (s[i + 1] == c || !s[i + 1]))
+			len ++;
+		i++;
 	}
-	res[j] = NULL;
-	return (res);
+	ans = (char **)malloc(sizeof(char *) * (len + 1));
+	if (ans == NULL)
+		return (NULL);
+	fill_ans(s, c, ans);
+	return (ans);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yughoshi <yughoshi@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: rozeki <rozeki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/11 19:32:01 by yughoshi          #+#    #+#             */
-/*   Updated: 2022/10/20 15:40:15 by yughoshi         ###   ########.fr       */
+/*   Created: 2022/11/02 15:40:00 by rozeki            #+#    #+#             */
+/*   Updated: 2022/12/11 18:38:27 by rozeki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,34 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	size_t	len_s;
-	char	*res;
+	char	*h;
+	size_t	i;
+	size_t	n;
 
 	if (s == NULL)
-	{
 		return (NULL);
-	}
-	len_s = ft_strlen(s);
-	if (len <= 0 || len_s <= start)
-	{
-		return (ft_strdup(""));
-	}
-	if (len > len_s - start)
-	{
-		len = len_s - start;
-	}
-	res = malloc(sizeof(char) * (len + 1));
-	if (res == NULL)
-	{
+	else if (ft_strlen(s) < start)
+		len = 0;
+	else if (ft_strlen(s) - start < len)
+		len = ft_strlen(s) - start;
+	h = malloc(sizeof(char) * (len + 1));
+	if (h == NULL)
 		return (NULL);
+	i = start;
+	n = 0;
+	while (s[i] && n < len)
+	{
+		h[n] = s[i];
+		n ++;
+		i ++;
 	}
-	ft_strlcpy(res, &s[start], len + 1);
-	return (res);
+	h[n] = '\0';
+	return (h);
 }
+
+// int main(int argc, char const *argv[])
+// {
+// 	printf("%s\n",ft_substr("42", 0, 0));
+// 	printf("%s\n",ft_substr("tripouille", 100, 1));
+// 	return 0;
+// }

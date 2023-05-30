@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yughoshi <yughoshi@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: rozeki <rozeki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/10 09:56:34 by yughoshi          #+#    #+#             */
-/*   Updated: 2022/10/20 15:39:42 by yughoshi         ###   ########.fr       */
+/*   Created: 2022/10/21 18:52:57 by rozeki            #+#    #+#             */
+/*   Updated: 2022/11/30 19:24:18 by rozeki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,23 @@
 
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	size_t	dst_len;
-	size_t	src_len;
 	size_t	i;
+	size_t	s;
+	size_t	count;
 
-	if (dstsize == 0)
-		return (ft_strlen(src));
-	dst_len = ft_strlen(dst);
-	src_len = ft_strlen(src);
-	if (dstsize <= dst_len)
-		return (src_len + dstsize);
+	count = ft_strlen(src);
+	if (dst == NULL && dstsize == 0)
+		return (count);
 	i = 0;
-	if (dstsize > dst_len)
+	s = 0;
+	while (dst[i] && i < dstsize)
+		i ++;
+	while (src[s] && (i + s + 1) < dstsize)
 	{
-		while (dst[i] != '\0')
-			i++;
-		dst = dst + i;
-		i = 0;
-		while (i < dstsize - dst_len - 1 && src[i] != '\0')
-		{
-			dst[i] = src[i];
-			i++;
-		}
-		dst[i] = '\0';
+		dst[i + s] = src[s];
+		s ++;
 	}
-	return (dst_len + src_len);
+	if (i < dstsize)
+		dst[i + s] = '\0';
+	return (i + count);
 }

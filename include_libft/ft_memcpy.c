@@ -3,32 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yughoshi <yughoshi@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: rozeki <rozeki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/09 12:17:57 by yughoshi          #+#    #+#             */
-/*   Updated: 2022/10/20 15:38:52 by yughoshi         ###   ########.fr       */
+/*   Created: 2022/11/30 18:06:12 by rozeki            #+#    #+#             */
+/*   Updated: 2022/12/08 13:15:13 by rozeki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+void	*ft_memcpy(void	*dst, const void *src, size_t n)
 {
-	unsigned char		*uc_dst;
-	const unsigned char	*uc_src;
-	size_t				i;
+	unsigned char	*cpd;
+	unsigned char	*cps;
+	size_t			i;
 
-	uc_dst = (unsigned char *)dst;
-	uc_src = (const unsigned char *)src;
-	i = 0;
-	if (uc_dst == uc_src)
+	cpd = (unsigned char *)dst;
+	cps = (unsigned char *)src;
+	if (dst == NULL && src == NULL)
+		return (NULL);
+	else
 	{
-		return (dst);
+		i = 0;
+		while (i < n)
+		{
+			cpd[i] = cps[i];
+			i ++;
+		}
 	}
-	while (n > i)
-	{
-		uc_dst[i] = uc_src[i];
-		i++;
-	}
-	return (dst);
+	return (cpd);
 }

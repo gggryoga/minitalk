@@ -3,40 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yughoshi <yughoshi@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: rozeki <rozeki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/09 15:00:25 by yughoshi          #+#    #+#             */
-/*   Updated: 2022/10/20 15:38:57 by yughoshi         ###   ########.fr       */
+/*   Created: 2022/10/21 18:02:51 by rozeki            #+#    #+#             */
+/*   Updated: 2022/12/08 11:25:21 by rozeki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	unsigned char		*up_dst;
-	const unsigned char	*up_src;
-	size_t				i;
+	size_t			i;
+	unsigned char	*dmem;
+	unsigned char	*smem;
 
-	up_dst = (unsigned char *)dst;
-	up_src = (const unsigned char *)src;
 	i = 0;
-	if (up_dst == up_src)
-		return (dst);
-	if (up_dst > up_src)
+	dmem = (unsigned char *)dest;
+	smem = (unsigned char *)src;
+	if (dmem == NULL && smem == NULL)
+		return (NULL);
+	if (dmem > smem)
 	{
-		while (len-- > 0)
-		{
-			up_dst[len] = up_src[len];
-		}
+		while (n-- > 0)
+			dmem[n] = smem[n];
 	}
 	else
 	{
-		while (len > i)
+		while (i < n)
 		{
-			up_dst[i] = up_src[i];
+			dmem[i] = smem[i];
 			i++;
 		}
 	}
-	return (dst);
+	return (dmem);
 }

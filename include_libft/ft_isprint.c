@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yughoshi <yughoshi@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: rozeki <rozeki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/06 09:13:09 by yughoshi          #+#    #+#             */
-/*   Updated: 2022/10/06 20:36:10 by yughoshi         ###   ########.fr       */
+/*   Created: 2022/10/10 13:26:44 by rozeki            #+#    #+#             */
+/*   Updated: 2022/10/16 17:01:24 by rozeki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,8 @@
 
 int	ft_isprint(int c)
 {
-	return (c >= ' ' && c <= '~');
+	if (32 <= c && c <= 126)
+		return (1);
+	else
+		return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yughoshi <yughoshi@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: rozeki <rozeki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/06 09:13:24 by yughoshi          #+#    #+#             */
-/*   Updated: 2022/10/20 15:40:00 by yughoshi         ###   ########.fr       */
+/*   Created: 2022/10/16 17:02:34 by rozeki            #+#    #+#             */
+/*   Updated: 2022/12/11 13:04:46 by rozeki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,20 @@
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	size_t			i;
-	unsigned char	*uc_s1;
-	unsigned char	*uc_s2;
+	unsigned char	*h1;
+	unsigned char	*h2;
 
-	uc_s1 = (unsigned char *)s1;
-	uc_s2 = (unsigned char *)s2;
-	i = 0;
-	while (i < n && s1[i] == s2[i])
-	{
-		if (uc_s1[i] == '\0')
-			return (0);
-		i++;
-	}
-	if (i == n)
+	if (n == 0)
 		return (0);
-	return (uc_s1[i] - uc_s2[i]);
+	h1 = (unsigned char *)s1;
+	h2 = (unsigned char *)s2;
+	i = 0;
+	while (i < n)
+	{
+		if (h1[i] == h2[i] && h1[i] != '\0' && h2[i] != '\0')
+			i ++;
+		else
+			return (h1[i] - h2[i]);
+	}
+	return (0);
 }

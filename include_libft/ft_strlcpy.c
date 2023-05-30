@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yughoshi <yughoshi@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: rozeki <rozeki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/10 09:47:59 by yughoshi          #+#    #+#             */
-/*   Updated: 2022/10/20 15:39:46 by yughoshi         ###   ########.fr       */
+/*   Created: 2022/10/10 14:51:19 by rozeki            #+#    #+#             */
+/*   Updated: 2022/11/13 17:35:02 by rozeki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,17 @@
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
 	size_t	i;
-	size_t	result;
+	int		count;
 
 	i = 0;
-	result = 0;
-	while (src[result])
-		result++;
+	count = ft_strlen(src);
 	if (dstsize == 0)
-		return (result);
-	while (src[i] && i < dstsize - 1)
+		return (count);
+	while (i < dstsize - 1 && src[i] != '\0')
 	{
 		dst[i] = src[i];
-		i++;
+		i ++;
 	}
 	dst[i] = '\0';
-	return (result);
+	return (count);
 }
